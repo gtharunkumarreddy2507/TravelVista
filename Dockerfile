@@ -1,5 +1,8 @@
 FROM php:8.2-apache
 
+# Install PHP extensions required for MySQL connectivity
+RUN docker-php-ext-install pdo pdo_mysql mysqli
+
 # Enable Apache rewrite module (for .htaccess routes if needed)
 RUN a2enmod rewrite
 
