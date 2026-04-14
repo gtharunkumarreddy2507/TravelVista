@@ -1,0 +1,43 @@
+# ─── Database dumps (never expose DB on GitHub) ───
+*.sql
+*.db
+
+# ─── Package/uploaded images (too large for GitHub) ───
+admin/pacakgeimages/
+
+# ─── Editor/IDE files ───
+.vscode/
+.idea/
+*.suo
+*.user
+*.swp
+*.swo
+
+# ─── OS generated files ───
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── XAMPP / server files ───
+import.bat
+import.php
+test_db.php
+
+# ─── Python scripts (one-time generators) ───
+*.py
+
+# ─── Logs ───
+*.log
+error_log
+
+# ─── Zip/archives ───
+*.zip
+*.tar.gz
+
+# ─── Screenshots & videos ───
+*.mp4
+*.webm
+*.avi
+*.mov
+*.mkv
+screenshots/
