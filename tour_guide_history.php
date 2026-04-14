@@ -83,16 +83,7 @@ require_once __DIR__ . '/includes/config.php';
     
 
     <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "travel";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    // $conn is provided by includes/config.php (required at the top of this file)
 
     // Fetch data from the database
     $sql = "SELECT * FROM tour_guide";
