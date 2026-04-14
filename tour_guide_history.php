@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-include('includes/config.php');
+include __DIR__ . '/includes/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -83,12 +83,13 @@ include('includes/config.php');
     
 
     <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "travel";
+    $servername = getenv('DB_HOST') !== false ? getenv('DB_HOST') : 'localhost';
+    $db_port    = getenv('DB_PORT') !== false ? getenv('DB_PORT') : '3306';
+    $username   = getenv('DB_USER') !== false ? getenv('DB_USER') : 'root';
+    $password   = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
+    $dbname     = getenv('DB_NAME') !== false ? getenv('DB_NAME') : 'travel';
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($servername, $username, $password, $dbname, (int)$db_port);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
