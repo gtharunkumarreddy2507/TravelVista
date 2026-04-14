@@ -39,7 +39,7 @@ In Railway → your project → **MySQL** service → **Connect** tab → look f
 - `MYSQL_PORT` → use as `DB_PORT`
 - `MYSQL_USER` → use as `DB_USER`
 - `MYSQL_PASSWORD` → use as `DB_PASS`
-- `MYSQLATABASE` (or `MYSQL_DATABASE`) → use as `DB_NAME` (usually `railway`)
+- `MYSQL_DATABASE` → use as `DB_NAME` (usually `railway`)
 
 ## Setting Variables for Local Development
 

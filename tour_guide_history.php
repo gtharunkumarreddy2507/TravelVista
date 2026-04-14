@@ -83,44 +83,31 @@ include __DIR__ . '/includes/config.php';
     
 
     <?php
-    $servername = getenv('DB_HOST') !== false ? getenv('DB_HOST') : 'localhost';
-    $db_port    = getenv('DB_PORT') !== false ? getenv('DB_PORT') : '3306';
-    $username   = getenv('DB_USER') !== false ? getenv('DB_USER') : 'root';
-    $password   = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
-    $dbname     = getenv('DB_NAME') !== false ? getenv('DB_NAME') : 'travel';
+    // Fetch data from the database using the PDO connection from includes/config.php
+    $stmt = $dbh->prepare("SELECT * FROM tour_guide");
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $conn = new mysqli($servername, $username, $password, $dbname, (int)$db_port);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Fetch data from the database
-    $sql = "SELECT * FROM tour_guide";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
+    if (count($rows) > 0) {
         echo '<table class="table table-striped">';
         echo '<thead style="background-color: #000; color: #fff;">';
         echo '<tr><th>SL</th><th>Gender</th><th>Experience</th><th>Hourly Rent</th><th>Spoken Skills</th><th>Destination</th></tr>';
         echo '</thead>';
         echo '<tbody>';
-        while ($row = $result->fetch_assoc()) {
+        foreach ($rows as $row) {
             echo '<tr>';
-            echo '<td>' . $row['guide_id'] . '</td>';
-            echo '<td>' . $row['gender'] . '</td>';
-            echo '<td>' . $row['experience'] . ' Years</td>';
-            echo '<td>$' . $row['hourly_rent'] . '</td>';
-            echo '<td>' . $row['spoken_skill'] . '</td>';
-            echo '<td>' . $row['destination'] . '</td>';
+            echo '<td>' . htmlspecialchars($row['guide_id']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['gender']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['experience']) . ' Years</td>';
+            echo '<td>$' . htmlspecialchars($row['hourly_rent']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['spoken_skill']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['destination']) . '</td>';
             echo '</tr>';
         }
         echo '</tbody></table>';
     } else {
         echo "No tour guide data available.";
     }
-
-    $conn->close();
     ?>
 
     <!-- Add any other elements or content as needed -->
