@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-include('includes/config.php');
+require_once __DIR__ . '/includes/config.php';
 if (isset($_POST['submit2'])) {
     $pid = intval($_GET['pkgid']);
     $useremail = $_SESSION['login'];
